@@ -8,15 +8,8 @@ export class UserService {
   constructor(private readonly prisma: PrismaService) {}
 
   async createUser(createUserDto: CreateUserDto): Promise<User> {
-    return this.prisma.user.create({
-      data: {
-        id: createUserDto.id,
-        name: createUserDto.name,
-        email: createUserDto.email,
-        password: createUserDto.password,
-        googleId: createUserDto.googleId,
-      },
-    });
+    console.log('inside create user service', CreateUserDto);
+    return await this.prisma.create(createUserDto);
   }
 
   async updateUser(id: string, updateUserDto: UpdateUserDto): Promise<User> {

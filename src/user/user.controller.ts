@@ -9,7 +9,6 @@ import {
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto, UpdateUserDto } from './user.dto';
-import { PrismaService } from 'prisma/prisma.service';
 
 @Controller('users')
 export class UserController {
@@ -17,7 +16,8 @@ export class UserController {
 
   @Post()
   async createUser(@Body() createUserDto: CreateUserDto) {
-    return this.userService.createUser(createUserDto);
+    console.log('inside create user function', createUserDto);
+    return await this.userService.createUser(createUserDto);
   }
 
   @Put(':id')
